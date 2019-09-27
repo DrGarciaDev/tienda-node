@@ -1,0 +1,6 @@
+iniciar el package.json
+    npm init
+
+instalar las dependencias para el backend
+    npm install express --save
+    npm install body-parser --save
