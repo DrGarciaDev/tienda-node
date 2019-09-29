@@ -1,13 +1,4 @@
-const Pool = require('pg').Pool
-
-// Parámetros para la conección con postgres
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'api-tienda-node',
-  password: '1234',
-  port: 5432,
-})
+const { pool } = require('./database');
 
 const getProductos = (request, response) => {
     // Comprobando la conección 
