@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Header from '../components/Header';
+import Carrito from '../components/Carrito';
+
 class Home extends React.Component {
     
     constructor(props) {
@@ -134,14 +137,20 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className = "container fluid">
+            <div className = "container">
+                {/* Componente header  */}
+                <Header />
+                
+                <br>
+                </br>
+
                 <div className = "row align-items-center">
                     <div className = "col">
                         
                         <div className="card border-info mb-3">
                             
                             <form onSubmit = { this.handleSubmit } >
-                                <div className ="card-header bg-transparent border-info">
+                                <div className ="card-header border-info">
                                     <h2>Productos</h2>
                                 </div>
 
@@ -166,7 +175,7 @@ class Home extends React.Component {
                                     </p>
                                 </div>
 
-                                <div className = "card-footer bg-transparent border-info">
+                                <div className = "card-footer border-info text-right">
                                     <input type = "submit" className = "btn btn-primary btn-md" value="AGREGAR AL CARRITO"/>
                                 </div>
                             </form>
@@ -185,22 +194,6 @@ class Home extends React.Component {
                 </div>
             </div>
         )
-    }
-}
-
-// definicion del componente carrito 
-class Carrito extends React.Component {
-    render() {
-        return (
-            <ul>
-                {
-                    this.props.items.map((item, i) => (
-                        <li key = { i }>CODIGO: { item.codigo } - PRECIO $ { item.precio } </li>
-                    ))
-                }
-                <h2>TOTAL { this.props.total } </h2>
-            </ul>
-        );
     }
 }
 
