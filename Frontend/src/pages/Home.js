@@ -134,28 +134,45 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className = "container">
+            <div className = "container fluid">
                 <div className = "row align-items-center">
                     <div className = "col">
+                        
+                        <div className="card border-info mb-3">
+                            
+                            <form onSubmit = { this.handleSubmit } >
+                                <div className ="card-header bg-transparent border-info">
+                                    <h2>Productos</h2>
+                                </div>
 
-                        <form onSubmit = { this.handleSubmit } >
-                            <label>
-                            Elige un codigo de producto
-                                <select onChange ={ this.handleChange }>
-                                {
-                                    this.state.data.map((prod, i) => 
-                                        <option key ={ i } value = { prod.precio }> { prod.codigo } </option>
-                                    )
-                                }
-                                </select>
-                            </label>
-                            <input type = "submit" />
-                        </form>
+                                <div className = "card-body text-info">
+                                    <h5 className = "card-title">Elige un producto</h5>
+
+                                    <div className = "input-group mb-3">
+                                        <div className = "input-group-prepend">
+                                            <label className = "input-group-text" >Opciones</label>
+                                        </div>
+                                        <select className = "custom-select" onChange ={ this.handleChange } >
+                                            {
+                                                this.state.data.map((prod, i) => 
+                                                    <option key ={ i } value = { prod.precio }> { prod.codigo } </option>
+                                                )
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <p className = "card-text">
+                                        Elige algún producto de la lista para que sea agregado al carrito y puedas ver el total de tu compra
+                                    </p>
+                                </div>
+
+                                <div className = "card-footer bg-transparent border-info">
+                                    <input type = "submit" className = "btn btn-primary btn-md" value="AGREGAR AL CARRITO"/>
+                                </div>
+                            </form>
+
+                        </div>
                     
-                    </div>
-
-                    <div className = "col">
-
                     </div>
 
                     <div className = "col">
