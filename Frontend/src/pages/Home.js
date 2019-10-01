@@ -14,7 +14,9 @@ class Home extends React.Component {
             items: [],
             precio: '',
             codigo: '',
-            total: 0
+            total: 0,
+            cantidadPants: 0,
+            cantidadCamiseta: 0
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,14 +53,65 @@ class Home extends React.Component {
             codigo: this.state.codigo,
             precio: this.state.precio
         };
+        // después de guardar el valor del item creado con newItem 
+        // el objeto se guardará en el item de los productos agregados a la lista 
+
+
+        // Algoritmo para verificar que es lo que se está comprando
+        // y qué hacer en cada caso 
+        if (this.state.codigo === 'PANTALONES'){
+
+            console.log('PANTALON');
+            if (this.state.cantidadPants < 1) {
+                this.setState(state => ({
+                    cantidadPants: state.cantidadPants + 1,
+                    items: state.items.concat(newItem),
+                    total: state.total + parseFloat(this.state.precio)        
+                }))
+            } 
+            else if (this.state.cantidadPants >= 1) {
+                this.setState(state => ({
+                    cantidadPants: 0,
+                    items: state.items.concat(newItem)
+                }))
+            }
+
+        }
+        else if (this.state.codigo === 'CAMISETA'){
+
+            console.log('CAMISETA');
+            if (this.state.cantidadCamiseta < 2) {
+                this.setState(state => ({
+                    cantidadCamiseta: state.cantidadCamiseta + 1,
+                    items: state.items.concat(newItem),
+                    total: state.total + parseFloat(this.state.precio)        
+                }))
+            } 
+            else if (this.state.cantidadCamiseta === 2) {
+                this.setState(state => ({
+                    cantidadCamiseta: state.cantidadCamiseta + 1,
+                    items: state.items.concat(newItem),
+                    total: state.total + parseFloat(this.state.precio) - 3        
+                }))
+            }
+            else if (this.state.cantidadCamiseta >= 3) {
+                this.setState(state => ({
+                    cantidadCamiseta: state.cantidadCamiseta + 1,
+                    items: state.items.concat(newItem),
+                    total: state.total + 19        
+                }))
+            }
+
+        }
+        else {
+
+            this.setState(state => ({
+                items: state.items.concat(newItem),
+                total: state.total + parseFloat(this.state.precio)
+            }));
+
+        }
         
-        // guarda el valor del item creado con newItem 
-        // y además es aquí donde se calcula el total acumulado
-        // de los productos agregados a la lista 
-        this.setState(state => ({
-            items: state.items.concat(newItem),
-            total: state.total + parseFloat(this.state.precio)
-        })); 
     }
 
     componentDidMount() {
