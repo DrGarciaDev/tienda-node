@@ -12,8 +12,8 @@ class Home extends React.Component {
             // items es un array para almacenar objetos json con el codigo y precio de los productos seleccionado
             // items: [{codigo: 'CAMISETA', precio: 7.5 }]
             items: [],
-            precio: '',
-            codigo: '',
+            precio: '20',
+            codigo: 'CAMISETA',
             total: 0,
             cantidadPants: 0,
             cantidadCamiseta: 0
