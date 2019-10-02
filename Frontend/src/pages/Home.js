@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Carrito from '../components/Carrito';
 
 class Home extends React.Component {
@@ -64,7 +65,7 @@ class Home extends React.Component {
         // y qué hacer en cada caso 
         if (this.state.codigo === 'PANTALONES'){
 
-            console.log('PANTALON');
+            // console.log('PANTALON');
             if (this.state.cantidadPants < 1) {
                 this.setState(state => ({
                     cantidadPants: state.cantidadPants + 1,
@@ -82,7 +83,7 @@ class Home extends React.Component {
         }
         else if (this.state.codigo === 'CAMISETA'){
 
-            console.log('CAMISETA');
+            // console.log('CAMISETA');
             if (this.state.cantidadCamiseta < 2) {
                 this.setState(state => ({
                     cantidadCamiseta: state.cantidadCamiseta + 1,
@@ -137,7 +138,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className = "container">
+            <div className = "container fluid">
                 {/* Componente header  */}
                 <Header />
                 
@@ -146,44 +147,50 @@ class Home extends React.Component {
 
                 <div className = "row align-items-center">
                     <div className = "col">
-                        
-                        <div className="card border-info mb-3">
-                            
-                            <form onSubmit = { this.handleSubmit } >
-                                <div className ="card-header border-info">
-                                    <h2>Productos</h2>
-                                </div>
-
-                                <div className = "card-body text-info">
-                                    <h5 className = "card-title">Elige un producto</h5>
-
-                                    <div className = "input-group mb-3">
-                                        <div className = "input-group-prepend">
-                                            <label className = "input-group-text" >Opciones</label>
-                                        </div>
-                                        <select className = "custom-select" onChange ={ this.handleChange } >
-                                            {
-                                                this.state.data.map((prod, i) => 
-                                                    <option key ={ i } value = { prod.precio }> { prod.codigo } </option>
-                                                )
-                                            }
-                                        </select>
+                        <div className = "shadow-lg p-3 mb-5 bg-white rounded">
+                            <div className="card border-info mb-3">
+                                
+                                <form onSubmit = { this.handleSubmit } >
+                                    <div className ="card-header border-info bg-info">
+                                        <h2>Productos</h2>
                                     </div>
 
-                                    <p className = "card-text">
-                                        Elige algún producto de la lista para que sea agregado al carrito y puedas ver el total de tu compra
-                                    </p>
-                                </div>
+                                    <div className = "card-body text-info">
+                                        <h5 className = "card-title">Elige un producto</h5>
 
-                                <div className = "card-footer border-info text-right">
-                                    <input type = "submit" className = "btn btn-primary btn-md" value="AGREGAR AL CARRITO"/>
-                                </div>
-                            </form>
+                                        <div className = "input-group mb-3">
+                                            <div className = "input-group-prepend">
+                                                <label className = "input-group-text" >Opciones</label>
+                                            </div>
+                                            <select className = "custom-select" onChange = { this.handleChange } >
+                                                {
+                                                    this.state.data.map((prod, i) => 
+                                                        <option key ={ i } value = { prod.precio }> { prod.codigo } </option>
+                                                    )
+                                                }
+                                            </select>
+                                        </div>
 
+                                        <p className = "card-text">
+                                            Elige algún producto de la lista para que sea agregado al carrito y puedas ver el total de tu compra
+                                        </p>
+                                        <p>Descuentos</p>
+                                        <ul>
+                                            <li>Al 2 por 1 en PANTALONES</li>
+                                            <li>En la compra de 3 o más CAMISETAS el costo por unidad es de $ 19.00</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className = "card-footer border-info text-right">
+                                        <input type = "submit" className = "btn btn-primary btn-md" value = "AGREGAR AL CARRITO"/>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
-                    
                     </div>
-
+                </div>
+                <div className = "row align-items-center">
                     <div className = "col">
                         {/* componente carrito */}
                         <Carrito 
@@ -192,6 +199,10 @@ class Home extends React.Component {
                         />
                     </div>
                 </div>
+                
+                {/* Componente Footer */}
+                <Footer />
+
             </div>
         )
     }
